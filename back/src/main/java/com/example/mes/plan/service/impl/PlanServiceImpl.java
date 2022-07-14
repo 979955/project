@@ -83,6 +83,7 @@ public class PlanServiceImpl implements IPlanService {
 		for (Plan plan : df.getPlanSet()) {
 			planMapper.updateDistributeTime(plan.getId());
 
+
 			for (int i = 0; i < count; i++) {
 				String uuid = UUID.randomUUID().toString().replace("-", "");
 				String now = Instant.now().toEpochMilli() + "";

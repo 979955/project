@@ -71,7 +71,7 @@ public class TransactionController {
     }
 
     @Transactional
-    @PostMapping("update")
+    @PostMapping("/update")
     public String update(@RequestBody UpdateVo updateVo){
         try {
             return service.update(updateVo);
