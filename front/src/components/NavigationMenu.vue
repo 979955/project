@@ -96,7 +96,7 @@
       </el-submenu>
 
       <!-- 简绿焜 生产计划管理 -->
-      <el-submenu index="/Plan"  v-if="isValidAccess(['生产计划管理'])">
+      <el-submenu index="plan"  v-if="isValidAccess(['生产计划管理'])">
         <template slot="title">
           <i class="el-icon-goods"></i>
           <span>生产计划管理</span>

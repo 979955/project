@@ -51,7 +51,6 @@ import PageBar from "../../components/Plan/pageBar/PageBar.vue";
 import { user } from "../../network/Plan/variable.js";
 
 export default {
-  inject:["reload"],
   components: {
     Search,
     PageBar,
@@ -73,8 +72,11 @@ export default {
       },
     };
   },
+  created() {
+    this.find()
+  },
   activated() {
-
+    console.log("activated调用了");
     request({
       url: "/plan/getPlanPageByCriteria",
       params:{
@@ -87,14 +89,10 @@ export default {
         this.result = result.records;
         this.page = result.current;
         this.all = result.pages;
-      }
-      
-      )
+      })
       .catch((err) => {
         console.log(err);
       });
-
-     this.reload()
   },
   methods: {
     timeFormat(row,column){
@@ -157,7 +155,7 @@ export default {
           console.log(err);
         });
     },
-    find() {
+    async find() {
       request({
         url: "/plan/getPlanPageByCriteria",
         params: {
