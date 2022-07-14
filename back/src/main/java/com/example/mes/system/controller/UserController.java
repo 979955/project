@@ -76,9 +76,10 @@ public class UserController {
         HashMap<String, Object> res = new HashMap<>();
         String Method = userUpdateVo.request;
         String id = userUpdateVo.user.getCompany_id()+getFourRandom();
-        userUpdateVo.id = Integer.parseInt(id);
-        User user = userService.findUserById(userUpdateVo.id,userUpdateVo.user.getCompany_id());
+
         if (Method.equals("insert")) {
+            userUpdateVo.id = Integer.parseInt(id);
+            User user = userService.findUserById(userUpdateVo.id,userUpdateVo.user.getCompany_id());
             if (user != null) {
                 MyUtils.fail(res, "该id已经占用，请勿重复创建");
             } else {
@@ -88,8 +89,8 @@ public class UserController {
             }
         }
         if (Method.equals("update")) {
+            User user = userService.findUserById(userUpdateVo.id,userUpdateVo.user.getCompany_id());
             if (user == null) {
-
                 MyUtils.fail(res, "该id未创建");
             } else {
                 if (userUpdateVo.isChangeDepartment == 0) {
